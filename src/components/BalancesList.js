@@ -54,6 +54,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import TokenIcon from './TokenIcon';
 import EditAccountNameDialog from './EditAccountNameDialog';
 import MergeAccountsDialog from './MergeAccountsDialog';
+import SwapButton from './SwapButton';
 
 const balanceFormat = new Intl.NumberFormat(undefined, {
   minimumFractionDigits: 4,
@@ -199,6 +200,7 @@ export default function BalancesList() {
               <>({numberFormat.format(totalUsdValue.toFixed(2))})</>
             )}
           </Typography>
+          <SwapButton />
           {selectedAccount &&
             selectedAccount.name !== 'Main account' &&
             selectedAccount.name !== 'Hardware wallet' && (
@@ -665,7 +667,9 @@ function BalanceListItemDetails({
           >
             Send
           </Button>
-          {localStorage.getItem('warning-close-account') && mint && amount === 0 ? (
+          {localStorage.getItem('warning-close-account') &&
+          mint &&
+          amount === 0 ? (
             <Button
               variant="outlined"
               color="secondary"
@@ -676,7 +680,6 @@ function BalanceListItemDetails({
               Delete
             </Button>
           ) : null}
-
         </div>
         {additionalInfo}
       </div>
